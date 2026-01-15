@@ -36,7 +36,7 @@ app.post('/books', async(request, response)=>{
     }
 })
 //get all books from mongoDB
-app.get('/', async(request, response)=>{
+app.get('/books', async(request, response)=>{
     try{
     const books = await Book.find();
     return response.status(200).json({
@@ -49,6 +49,19 @@ app.get('/', async(request, response)=>{
     })
 }
 })
+
+//Route for the get one book from database by ID
+app.get('/books/:id', async (req, res)=>{
+    try{
+        const { id } = req.params
+        const book = await findById(id);
+        return res.status(200).json(book);
+    }catch(error){
+        return res.status(500).json({
+            message : error.message
+        })
+    }
+});
 
 
 mongoose
