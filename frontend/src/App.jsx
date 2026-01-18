@@ -1,9 +1,21 @@
 import React from 'react'
+import {Routes, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import CreateBooks from './pages/CreateBooks'
+import DeleteBook from './pages/DeleteBook'
+import EditBook from './pages/EditBook'
+import ShowBooks from './pages/ShowBooks'
 
 const App = () => {
   return (
-    <div className="bg-red-500 text-white p-4 text-2xl">
-      Tailwind is working!
+    <div>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/books/create' element={<CreateBooks/>} />
+        <Route path='/books/details/:id' element={<ShowBooks/>} />
+        <Route path='/books/edit/:id' element={<EditBook/>} />
+        <Route path='/books/delete/:id' element={<DeleteBook/>} />
+      </Routes>
     </div>
   )
 }
